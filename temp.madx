@@ -1,0 +1,84 @@
+title, "test line";
+option, warn, -info, -echo;
+ang = 0.785698;
+len = 2.65;	//distance between dipoles - max length for numerical calculations
+/*+++++++++++++++++++++++++++++++++++++++++++++ELEMENTS DEFINITION+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+name	element		length		property #1				property #2				property #3                      */
+SB1:	sbend,		l = 0.2,	angle := -ang;
+SB2:	sbend,		l = 0.2,	angle := +ang;
+
+SD01:	drift,		l = 0.2;
+SD1:	drift,		l = 0.821179;	//between first dipole and quad
+SD1_half:	drift,	l := (SD1->l - QP2->l) / 2;
+SD2:	drift,		l = 0.857643;	//between quads
+SD02:	drift,		l = 0.2;
+SD0_0:	drift,		l := QP2->l;	
+
+
+QP1:	quadrupole,	l = 0.15,	k1 := +19.0;
+QP2:	quadrupole,	l = 0.15,	k1 := -10.0;
+QP3:	quadrupole,	l = 0.15,	k1 := +19.0;
+
+
+//calculations using given equation
+
+
+k = QP1->k1;
+C = 0.105483076 + len / 2;
+
+SD1->l = C + sqrt( (C - 2/(sqrt(k) * tan(0.15*sqrt(k) / 2) ) ) * (C + 2/(sqrt(k) / tan(0.15*sqrt(k) / 2) ) ) );
+value, SD1->l;
+SD2->l = (len - SD1->l) / 2;
+value, SD2->l;
+
+value, SD1_half->l;
+
+TEST_LINE: line = (
+SD01, SB1, SD2, QP1, SD1_half, SD0_0, SD1_half, QP2, SD2, SB2, SD02);
+
+beam, particle = electron, energy = 0.50510999e-01, RADIATE;
+use, period = TEST_LINE;
+
+
+readmytable, file = "twiss_files/ring_twiss.out", table = twiss_ring;
+betx0 = 35.0;
+bety0 = 25.0;
+alfx0 = 0;
+alfy0 = 8;
+dx0 = table(twiss_ring, SEPT_mid, dx);
+dpx0 = table(twiss_ring, SEPT_mid, dpx);
+
+select, flag = twiss, column = name, s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
+twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0;
+
+
+use, period = TEST_LINE;
+
+match, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0;
+
+constraint, sequence = TEST_LINE, range = #e, dx = 0, dpx = 0;//, betx = betx0;//, alfx = alfx0;//, bety = bety0, alfy = alfy0;
+constraint, sequence = TEST_LINE, range = SB1/SB2, bety < 100;
+
+//vary, name = QP1->k1, step = 1e-12, lower = -18.0, upper = 18.0;
+vary, name = QP1->k1, step = 0.00001, lower = -25.0, upper = 25.0;
+//vary, name = SD2->l, step = 1e-12, lower = 0, upper = 10.0;
+vary, name = QP2->k1, step = 0.00001, lower = -25.0, upper = 25.0;
+//vary, name = QP3->k1, step = 0.00001, lower = -25.0, upper = 25.0;
+//vary, name = SD3->l, step = 1e-12, lower = 0, upper = 10.0;
+
+
+simplex, calls = 100000, tolerance = 1e-28;
+
+endmatch;
+
+select, flag = twiss, column = name, s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
+twiss, save, file = "twiss_files/test_twiss.out", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0;
+
+plot, haxis = s, vaxis = dx, dpx, colour = 100, file = "twiss_plots/test_twiss";
+plot, haxis = s, vaxis = betx, colour = 100, file = "twiss_plots/test_twiss";
+plot, haxis = s, vaxis = bety, colour = 100, file = "twiss_plots/test_twiss";
+
+select, flag = survey, column = name, s, x, z, theta;
+survey, sequence = INJ_LINE, file = "survey_files/test_survey.out", theta0 = 3.141592654 / 2;	// theta0 = 3.141592654
+
+//plot, haxis = x, vaxis = z, table = survey, file = "survey_plots/ring_survey", theta0 = 3.141592654 / 2;	//theta0 = 3.141592654
