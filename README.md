@@ -1,12 +1,12 @@
 * Files:  extraction_line.madx    - main file for extraction that I used in my calculations
-        extraction_line_new.madx- madx script for the case with length 2.8m with 2 dublets at the end
+        * extraction_line_new.madx- madx script for the case with length 2.8m with 2 dublets at the end
                                   to manipulate the final condition.
-        extraction_line_#m.madx - madx script for case when length between dipoles is 2.#m
-        ring_twiss.out          - table (madx output) that contain precalculated twiss parameters for a ThomX ring.
+        * extraction_line_#m.madx - madx script for case when length between dipoles is 2.#m
+        * ring_twiss.out          - table (madx output) that contain precalculated twiss parameters for a ThomX ring.
                                   I use values obtained from this table as initial for extraction line calculaions.
-        ring_survey.out         - table (madx output) that contains precalculated survey for ThomX ring.
+        * ring_survey.out         - table (madx output) that contains precalculated survey for ThomX ring.
                                   I use values obtained from this table to have coordinates relative to the ring.
-        madx                    - madx program itself
+        * madx                    - madx program itself
 
   To start each of the madx scripts you need to redirect input from the file with a script to terminal -  "./madx < extraction_line.madx"
 
