@@ -1,4 +1,5 @@
-* Files:  extraction_line.madx - main file for extraction that I used in my calculations
+* Files:
+  * extraction_line.madx - main file for extraction that I used in my calculations
   * extraction_line_new.madx - madx script for the case with length 2.8m with 2 dublets at the end
                                   to manipulate the final condition.
   * extraction_line_#m.madx - madx script for case when length between dipoles is 2.#m
@@ -22,8 +23,8 @@
     * 3rd quad and 2nd dipole - SDIE3_3
       and are calculated using the analytical equation
   * strength of each of 3 quads (in scripts they are - QP1D, QP2D and QP3D).
-      They are calculated using madx module match.
-      
+    They are calculated using madx module match.
+
 * More about matching:
         All the madx scripts have matching module. I use different values of constraints in order to get the best result (line 92):
         * betx/bety = 50/50 - 2.8 m, 2.9 m
