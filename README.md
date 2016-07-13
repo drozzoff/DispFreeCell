@@ -34,9 +34,9 @@
   Also there calculated optimal values for quads strength which you will also get by executing scripts. These values are the following:
 
   * 2.8m
-    - QP1D - 1.74827e+01
-    - QP2D - 1.86366e+01
-		- QP3D - -1.33307e+01
+    - QP1D | 1.74827e+01
+    - QP2D | 1.86366e+01
+		- QP3D | -1.33307e+01
   * 2.9m
 		- QP1D - 1.68866e+01
 		- QP2D - 1.80241e+01
@@ -49,7 +49,7 @@
 		- QP1D - 1.89444e+01
 		- QP2D - 2.01548e+01
 		- QP3D - -1.57964e+01
-	* 2.5m
+  * 2.5m
 		- QP1D - 1.98361e+01
 		- QP2D - 2.11178e+01
 		- QP3D - -1.44637e+01
@@ -65,6 +65,7 @@
 		- QP1D - 2.38502e+01
 		- QP2D - 2.52649e+01
     - QP3D - -2.28523e+01
+
   Such table is included in every script
   In order to avoid doing matching again you can comment all the matching module from line 87 till line 107 and write like this:
   ```c++
