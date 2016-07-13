@@ -4,7 +4,7 @@ option, warn, -info, -echo;
 name		element		length			property #1				property #2				property #3                      */
 
 
-len = 2.8 - 0.30;	//the distance between two dipols
+len = 2.3 - 0.30;	//the distance between two dipols
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++DRIFTS++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 SD32:		drift,		l = 0.2;
 SD2:		drift,		l = 0.2;
@@ -89,9 +89,9 @@ dpx0 = table(twiss_ring, SEPT_mid, dpx);
 match, sequence = EXT_LINE, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
 
 constraint, range = #e, dx = 0, dpx = 0;
-constraint, range = SEPT_half/DIPL, betx < 50, bety < 50;	//limit betx/bety = 50/50 - 2.8 m, 2.9 m
-															//		betx/bety = 50/40 - 2.7 m, 2.6 m
-															//		betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
+constraint, range = SEPT_half/DIPL, betx < 50, bety < 30;	//limit betx/bety = 50/50 - 2.8 m, 2.9 m
+																													//		betx/bety = 50/40 - 2.7 m, 2.6 m
+																													//		betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
 
 vary, name = QP1D->k1, step = 0.00001, lower = -23.0, upper = +23.0;
 vary, name = QP2D->k1, step = 0.00001, lower = -19.0, upper = +19.0;

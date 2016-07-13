@@ -90,8 +90,8 @@ match, sequence = EXT_LINE, betx = betx0, bety = bety0, alfx = alfx0, alfy = alf
 
 constraint, range = #e, dx = 0, dpx = 0;
 constraint, range = SEPT_half/DIPL, betx < 50, bety < 50;	//limit betx/bety = 50/50 - 2.8 m, 2.9 m
-															//		betx/bety = 50/40 - 2.7 m, 2.6 m
-															//		betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
+																													//		betx/bety = 50/40 - 2.7 m, 2.6 m
+																													//		betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
 
 vary, name = QP1D->k1, step = 0.00001, lower = -23.0, upper = +23.0;
 vary, name = QP2D->k1, step = 0.00001, lower = -19.0, upper = +19.0;
