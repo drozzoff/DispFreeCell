@@ -34,9 +34,11 @@
   Also there calculated optimal values for quads strength which you will also get by executing scripts. These values are the following:
 
   * 2.8m
-    - QP1D | 1.74827e+01
-    - QP2D | 1.86366e+01
-		- QP3D | -1.33307e+01
+  quad | strength, m^-2
+  ------------ | -------------
+  QP1D | 1.74827e+01
+  QP2D | 1.86366e+01
+  QP3D | -1.33307e+01
   * 2.9m
 		- QP1D - 1.68866e+01
 		- QP2D - 1.80241e+01
