@@ -1,4 +1,4 @@
-* Files:
+* # Files:
   * extraction_line.madx - main file for extraction that I used in my calculations
   * extraction_line_new.madx - madx script for the case with length 2.8m with 2 dublets at the end
                                   to manipulate the final condition.
@@ -9,12 +9,12 @@
 
   To start each of the madx scripts you need to redirect input from the file with a script to terminal -  "./madx < extraction_line.madx"
 
-* Each of the madx scripts upon the successful finish will generate 3 files (no matter what name of script is):
+* # Each of the madx scripts upon the successful finish will generate 3 files (no matter what name of script is):
   * extraction_twiss.out - table that contains twiss parameters
   * extraction_survey.out - table that contains survey
   * extraction_twiss.ps - a postscript file that contains a plot with beta functions for horizontal and vertical plane and dispersion in horizontal plane for a length of a cell
 
-* Parameters that we need to figure out in order to get the dispersion free cell are:
+* # Parameters that we need to figure out in order to get the dispersion free cell are:
   * location of 3 quads between the dipoles.
     Inside the scripts they are described as distances between
     * 1st dipole and 1st quad - SDIE3_1
@@ -25,12 +25,14 @@
   * strength of each of 3 quads (in scripts they are - QP1D, QP2D and QP3D).
     They are calculated using madx module match.
 
-* More about matching:
+* # More about matching:
   All the madx scripts have matching module. I use different values of constraints in order to get the best result (line 92):
   * betx/bety = 50/50 - 2.8 m, 2.9 m
   * betx/bety = 50/40 - 2.7 m, 2.6 m
   * betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
+
   Also there calculated optimal values for quads strength which you will also get by executing scripts. These values are the following:
+
   * 2.8m
     - QP1D - 1.74827e+01
     - QP2D - 1.86366e+01
@@ -70,5 +72,5 @@
   QP2D->k1 = 1.86366e+01;
   QP3D->k1 = -1.33307e+01;
   ```
-  
+
 * Also final values of betax and betay in the file extraction_line_new.madx should be change on the line 193
