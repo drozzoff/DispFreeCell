@@ -29,9 +29,9 @@
 
 * More about matching:
         All the madx scripts have matching module. I use different values of constraints in order to get the best result (line 92):
-                * betx/bety = 50/50 - 2.8 m, 2.9 m
-                * betx/bety = 50/40 - 2.7 m, 2.6 m
-                * betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
+        * betx/bety = 50/50 - 2.8 m, 2.9 m
+        * betx/bety = 50/40 - 2.7 m, 2.6 m
+        * betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
         Also there calculated optimal values for quads strength which you will also get by executing scripts. These values are the following:
           * 2.8m
         		- QP1D - 1.74827e+01
