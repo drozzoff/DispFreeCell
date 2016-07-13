@@ -90,7 +90,8 @@
 		QP2D | 2.52649e+01
     QP3D | -2.28523e+01
 
-  Such table is included in every script
+  Such table is included in every script.
+  
   In order to avoid doing matching again you can comment all the matching module from line 87 till line 107 and write like this:
   ```c++
   QP1D->k1 = 1.74827e+01;
