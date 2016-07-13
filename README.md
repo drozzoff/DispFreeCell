@@ -29,44 +29,43 @@
 
 * More about matching:
         All the madx scripts have matching module. I use different values of constraints in order to get the best result (line 92):
-                  betx/bety = 50/50 - 2.8 m, 2.9 m
-                  betx/bety = 50/40 - 2.7 m, 2.6 m
-                  betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
+                * betx/bety = 50/50 - 2.8 m, 2.9 m
+                * betx/bety = 50/40 - 2.7 m, 2.6 m
+                * betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
         Also there calculated optimal values for quads strength which you will also get by executing scripts. These values are the following:
-        	2.8m
-        		QP1D - 1.74827e+01
-        		QP2D - 1.86366e+01
-        		QP3D - -1.33307e+01
-        	2.9m
-        		QP1D - 1.68866e+01
-        		QP2D - 1.80241e+01
-        		QP3D - -1.17880e+01
-        	2.7m
-        		QP1D - 1.81689e+01
-        		QP2D - 1.93364e+01
-        		QP3D - -1.55868e+01
-        	2.6m
-        		QP1D - 1.89444e+01
-        		QP2D - 2.01548e+01
-        		QP3D - -1.57964e+01
-        	2.5m
-        		QP1D - 1.98361e+01
-        		QP2D - 2.11178e+01
-        		QP3D - -1.44637e+01
-        	2.4m
-        		QP1D - 2.09471e+01
-        		QP2D - 2.22354e+01
-        		QP3D - -1.91294e+01
-        	2.3m
-        		QP1D - 2.22370e+01
-        		QP2D - 2.35992e+01
-        		QP3D - -1.93867e+01
-        	2.2m
-        		QP1D - 2.38502e+01
-        		QP2D - 2.52649e+01
-      	    QP3D - -2.28523e+01
+        	* 2.8m
+        		- QP1D - 1.74827e+01
+        		- QP2D - 1.86366e+01
+        		- QP3D - -1.33307e+01
+        	* 2.9m
+        		- QP1D - 1.68866e+01
+        		- QP2D - 1.80241e+01
+        		- QP3D - -1.17880e+01
+        	* 2.7m
+        		- QP1D - 1.81689e+01
+        		- QP2D - 1.93364e+01
+        		- QP3D - -1.55868e+01
+        	* 2.6m
+        		- QP1D - 1.89444e+01
+        		- QP2D - 2.01548e+01
+        		- QP3D - -1.57964e+01
+        	* 2.5m
+        		- QP1D - 1.98361e+01
+        		- QP2D - 2.11178e+01
+        		- QP3D - -1.44637e+01
+        	* 2.4m
+        		- QP1D - 2.09471e+01
+        		- QP2D - 2.22354e+01
+        		- QP3D - -1.91294e+01
+        	* 2.3m
+        		- QP1D - 2.22370e+01
+        		- QP2D - 2.35992e+01
+        		- QP3D - -1.93867e+01
+        	* 2.2m
+        		- QP1D - 2.38502e+01
+        		- QP2D - 2.52649e+01
+      	    - QP3D - -2.28523e+01
         Such table is included in every script
-
         In order to avoid doing matching again you can comment all the matching module from line 87 till line 107 and write like this:
         QP1D->k1 = 1.74827e+01;
         QP2D->k1 = 1.86366e+01;
