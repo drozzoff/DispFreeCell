@@ -1,0 +1,252 @@
+title, "Extraction ThomX";
+option, warn, -info, -echo;
+/*+++++++++++++++++++++++++++++++++++++++++++++ELEMENTS DEFINITION+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+name		element		length			property #1				property #2				property #3                      */
+
+
+len = 2.8 - 0.30;	//the distance between two dipols
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++DRIFTS++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SD32:		drift,		l = 0.2;
+SD2:		drift,		l = 0.2;
+SD51:		drift,		l = 0.6621;
+SDIL2:		drift,		l = 0.145;
+SDIE2:		drift,		l = 0.3;
+SDIE3:		drift,		l := len + 0.3;	//has incorrec1t value due to the wrong positioning	--	should be chnaged in order to place more quads
+SDIE4:		drift,		l = 0.4;
+SD2L:		drift,		l = 0.5;
+
+// totally these drifts with 4/6 quads have to be 4.244 m long
+
+//--------------2 dublets case--------------
+// free length 3.644 m
+SDIE5:		drift,		l = 0.15;	//between quads - first dublet
+SDIE6:		drift,		l := 3.644 - SDIE5->l - SDIE7->l - SDIE8->l;	//between 2 sections
+SDIE7:		drift,		l = 0.15;	//between quads - second dublet
+SDIE8:		drift,		l = 0.4;	//free space till dump
+
+
+/*
+//--------------2 triplets case--------------
+// free length 3.344 m
+SDIE5:		drift,		l = 0.15;	//between 1st and 2nd quads - first triplet
+SDIE6:		drift,		l = 0.15;	//between 2nd and 3rd quads - first triplet
+SDIE7:		drift,		l := 3.344 - SDIE5->l - SDIE6->l - SDIE8->l - SDIE9->l - SDIE10->l;	//between 2 sections
+SDIE8:		drift,		l = 0.15;	//between 1st and 2nd quads - second triplet
+SDIE9:		drift,		l = 0.15;	//between 2nd and 3rd quads - second triplet
+SDIE10:		drift,		l = 0.4;	//free space till dump
+*/
+
+/*
+//--------------triplets+dublet case--------------
+// free length 3.344 m
+SDIE5:		drift,		l = 0.15;	//between 1st and 2nd quads - triplet
+SDIE6:		drift,		l = 0.15;	//between 2nd and 3rd quads - triplet
+SDIE7:		drift,		l := 3.344 - SDIE5->l - SDIE6->l - SDIE8->l - SDIE9->l;	//between 2 sections
+SDIE8:		drift,		l = 0.15;	//between quads - dublet
+SDIE9:		drift,		l = 0.4;	//free space till dump
+*/
+//SD3L:		drift,		l = 0.20000000e+00;
+
+SDIE3_1:	drift,		l = 0.55425635189; //0.55425635189
+SDIE3_2_1:	drift,		l := (len - 0.15 - 2 * SDIE3_1->l) / 2; //0.6324364811
+SDIE3_2_2:	drift,		l := (len - 0.15 - 2 * SDIE3_1->l) / 2;
+SDIE3_3:	drift,		l := SDIE3_1->l;
+
+SDQ:		drift,		l = 0.15;	//drift to place instead of quads
+//+++++++++++++++++++++++++++++++++++++++++++++++++++QUADRUPOLS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\
+QP2:		quadrupole,	l = 0.15,		k1 = 9.2301636;	//quad from the ring
+QP1:		quadrupole,	l = 0.15,		k1 = -4.477139;	//quad from the ring
+
+QP5EX:		quadrupole,	l = 0.15,		k1 = +9.623546;	//first quad dublet/triplet
+QP6EX:		quadrupole,	l = 0.15,		k1 = -10.05291;	//first quad dublet/triplet
+QP7EX:		quadrupole, l = 0.15,		k1 = +12.0;		//second quad dublet/triplet
+QP8EX:		quadrupole, l = 0.15,		k1 = -12.0;		//second quad dublet/triplet
+
+QP9EX:		quadrupole,	l = 0.15,		k1 = +9.0;		//third quad triplet
+QP10EX:		quadrupole,	l = 0.15,		k1 = +12.0;		//third quad triplet
+
+
+
+QP1D:		quadrupole,	l = 0.15,		k1 = 25;//18.96847;	//first quad to control dispertion
+QP2D:		quadrupole,	l = 0.15,		k1 = 18;//:= QP1D->k1;	//second quad to control dispertion
+QP3D:		quadrupole,	l = 0.15,		k1 = -18.0;	// defocusing quad to control beta function
+
+//QP7EX:	quadrupole,	l = 0.15,		k1 = -7.0;	//optional quad - for
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++DIPOLES++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+KICK:		sbend,		l = 0.2,		angle = -0.011;	//kicker located in the ring
+SEPT_half:	sbend,		l = 0.1851072 / 2,	angle = -0.16 / 2; //іфвфв
+DIPE:		sbend,		l = 0.2764601,		angle = -0.785398;
+DIPL:		sbend,		l = 0.27646,		angle = 0.785698,	fint = 0.27833331,	hgap = 0.025;
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++MARKERS++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+COKS:		marker;
+COKE:		marker;
+
+COSE:		marker;
+COSS:		marker;
+
+COEL:		marker;
+COSL:		marker;
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++SEQUENCE STRUCTURE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+EXT_LINE: line = (
+//COKS,	KICK,	COKE,
+//SD32,	QP2,	SD2,	QP1,	SD51,
+SEPT_half,	COSE,
+SDIL2,		SDIE2,
+DIPE,		SDIE3_1,	QP1D,	SDIE3_2_1,	QP3D,	SDIE3_2_2,	QP2D,	SDIE3_3,	DIPL,
+SDIE4
+,		QP5EX,		SDIE5,	QP6EX,		SDIE6,	QP7EX,		SDIE7,		QP8EX,	SDIE8); //-dublets
+//,		QP5EX,		SDIE5,	QP6EX,		SDIE6,	QP7EX,		SDIE7,		QP8EX,	SDIE8,	QP9EX,	SDIE9,	QP10EX,	SDIE10);	//-triplets
+//,		QP5EX,		SDIE5,	QP6EX,		SDIE6,	QP7EX,		SDIE7,		QP8EX,	SDIE8,	QP9EX,	SDIE9);	//-triplet+dublet
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++CODE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+beam, particle = electron, energy = 0.50510999e-01, RADIATE;
+use, sequence = EXT_LINE;
+
+
+//+++++++++++++++++++using of the analitycal equation+++++++++++++++++
+
+
+k = QP1D->k1;
+C = 0.105483076 + len / 2;
+value, C;
+ld = C + sqrt( (C - 2/(sqrt(k) * tan(0.15 * sqrt(k) / 2) ) ) * (C + 2/(sqrt(k) / tan(0.15 * sqrt(k) / 2) ) ) );
+SDIE3_2_1->l = (ld - 0.15) / 2;
+SDIE3_2_2->l = (ld - 0.15) / 2;
+SDIE3_1->l = (len - ld) / 2;
+SDIE3_3->l = (len - ld) / 2;
+
+value, SDIE3_1->l, SDIE3_2_1->l, SDIE3_2_1->l, SDIE3_3->l;
+
+readmytable, file = "twiss_files/ring_twiss.out", table = twiss_ring;
+betx0 = table(twiss_ring, SEPT_mid, betx);
+bety0 = table(twiss_ring, SEPT_mid, bety);
+alfx0 = table(twiss_ring, SEPT_mid, alfx);
+alfy0 = table(twiss_ring, SEPT_mid, alfy);
+dx0 = table(twiss_ring, SEPT_mid, dx);
+dpx0 = table(twiss_ring, SEPT_mid, dpx);
+
+/*
+//++++++++++++++++++++++matching module+++++++++++++++++++++++++++++++++
+match, sequence = EXT_LINE, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
+
+constraint, range = #e, dx = 0, dpx = 0;
+constraint, range = SEPT_half/SDIE4, betx < 50, bety < 50;	//limit betx/bety = 50/50 - 2.8 m, 2.9 m
+															//		betx/bety = 50/40 - 2.7 m, 2.6 m
+															//		betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
+
+vary, name = QP1D->k1, step = 0.00001, lower = -23.0, upper = +23.0;
+vary, name = QP2D->k1, step = 0.00001, lower = -19.0, upper = +19.0;
+vary, name = QP3D->k1, step = 0.00001, lower = -23.0, upper = +23.0;
+
+//vary, name = SDIE3_1->l, step = 0.000001, lower = 0.0, upper = 1.0;
+//vary, name = SDIE3_2->l, step = 0.000001, lower = 0.0, upper = 1.0;
+//vary, name = SDIE3_3->l, step = 0.000001, lower = 0.0, upper = 1.0;
+
+simplex, calls = 100000, tolerance = 1e-28;
+
+endmatch;
+*/
+
+//Previously calculated values - in case not to use matching
+QP1D->k1 = 1.74827e+01;//17.4996;
+QP2D->k1 = 1.86366e+01;//18.8271;
+QP3D->k1 = -1.33307e+01;//-15.7582;
+//-----best parameters------
+//	2.9m
+//		QP1D - 1.68866e+01
+//		QP2D - 1.80241e+01
+//		QP3D - -1.17880e+01
+//	2.8m
+//		QP1D - 1.74827e+01
+//		QP2D - 1.86366e+01
+//		QP3D - -1.33307e+01
+//	2.7m
+//		QP1D - 1.81689e+01
+//		QP2D - 1.93364e+01
+//		QP3D - -1.55868e+01
+//	2.6m
+//		QP1D - 1.89444e+01
+//		QP2D - 2.01548e+01
+//		QP3D - -1.57964e+01
+//	2.5m
+//		QP1D - 1.98361e+01
+//		QP2D - 2.11178e+01
+//		QP3D - -1.44637e+01
+//	2.4m
+//		QP1D - 2.09471e+01
+//		QP2D - 2.22354e+01
+//		QP3D - -1.91294e+01
+//	2.3m
+//		QP1D - 2.22370e+01
+//		QP2D - 2.35992e+01
+//		QP3D - -1.93867e+01
+//	2.2m
+//		QP1D - 2.38502e+01
+//		QP2D - 2.52649e+01
+//		QP3D - -2.28523e+01
+
+
+// second matching to fix final parameters
+match, sequence = EXT_LINE, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
+
+constraint, range = QP5EX/SDIE8, betx < 50, bety < 30;
+constraint, range = #e, betx = 45, bety = 30;
+
+vary, name = QP5EX->k1, step = 0.00001, lower = -18.0, upper = +18.0;
+vary, name = QP6EX->k1, step = 0.00001, lower = -18.0, upper = +18.0;
+vary, name = QP7EX->k1, step = 0.00001, lower = -18.0, upper = +18.0;
+vary, name = QP8EX->k1, step = 0.00001, lower = -18.0, upper = +18.0;
+//optional - for triplet or triplet-dublet
+//vary, name = QP9EX->k1,	step = 0.00001, lower = -18.0, upper = +18.0;
+//vary, name = QP10EX->k1,step = 0.00001, lower = -18.0, upper = +18.0;
+
+simplex, calls = 100000, tolerance = 1e-28;
+
+endmatch;
+
+//matching results - dublets
+//final conditions bext/bety
+//	BETX/BETY = 15/15
+//		QP5EX = 1.54907e+01
+//		QP6EX = -1.15906e+01
+//		QP7EX = 7.62074e+00
+//		QP9EX = -1.08293e+01
+//	BETX/BETY = 30/15
+//		QP5EX = 1.91301e+01
+//		QP6EX = -1.65231e+01
+//		QP7EX = 1.61856e+01
+//		QP8EX = -5.18140e+01
+//	BETX/BETY = 45/15
+//		QP5EX = 1.79290e+01
+//		QP6EX = -1.81631e+01
+//		QP7EX = 7.57209e+00
+//		QP8EX = -1.28074e+01
+//	BETX/BETY = 30/30
+//		QP5EX = 1.50555e+01
+//		QP6EX = -1.15217e+01
+//		QP7EX = 2.83209e+00
+//		QP8EX = -1.44608e-01
+//	BETX/BETY = 45/30
+//		QP5EX = 1.47129e+01
+//		QP6EX = -1.07686e+01
+//		QP7EX = 2.71925e+00
+//		QP8EX = -3.11167e+00
+
+select, flag = twiss, column = name, s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
+twiss, save, file = "twiss_files/extraction_twiss.out", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
+
+readmytable, file = "survey_files/ring_survey.out", table = survey_ring;
+select, flag = survey, column = name, s, x, z, theta;
+survey, sequence = INJ_LINE, file = "survey_files/extraction_survey.out";
+
+//select, flag = twiss, column = s, betx, bety;
+//write, table = twiss, file = "extraction_twiss.out";
+value, SDIE3_1->l, SDIE3_2_1->l, SDIE3_2_2->l, SDIE3_3->l;
+value, ld;
+value, len;
+setplot, font = 2;
+plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_plots/extraction_twiss";
+
+//plot, haxis = s, vaxis = dx, dpx, colour = 100, file = "twiss_plots/extraction_twiss";
+
+//plot, haxis = x, vaxis = z, table = survey, file = "survey_plots/extraction";

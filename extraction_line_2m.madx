@@ -77,10 +77,10 @@ value, SDIE3_1->l, SDIE3_2->l, SDIE3_3->l;
 
 
 readmytable, file = "ring_twiss.out", table = twiss_ring;
-betx0 = table(twiss_ring, SEPT_mid, betx);;
-bety0 = table(twiss_ring, SEPT_mid, bety);;
-alfx0 = table(twiss_ring, SEPT_mid, alfx);;
-alfy0 = table(twiss_ring, SEPT_mid, alfy);;
+betx0 = table(twiss_ring, SEPT_mid, betx);
+bety0 = table(twiss_ring, SEPT_mid, bety);
+alfx0 = table(twiss_ring, SEPT_mid, alfx);
+alfy0 = table(twiss_ring, SEPT_mid, alfy);
 dx0 = table(twiss_ring, SEPT_mid, dx);
 dpx0 = table(twiss_ring, SEPT_mid, dpx);
 
@@ -89,7 +89,7 @@ dpx0 = table(twiss_ring, SEPT_mid, dpx);
 match, sequence = EXT_LINE, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
 
 constraint, range = #e, dx = 0, dpx = 0;
-constraint, range = SEPT_half/DIPL, betx < 50, bety < 30;	//limit betx/bety = 50/50 - 2.8 m, 2.9 m
+constraint, range = SEPT_half/SDIE4, betx < 50, bety < 30;	//limit betx/bety = 50/50 - 2.8 m, 2.9 m
 																													//		betx/bety = 50/40 - 2.7 m, 2.6 m
 																													//		betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
 
