@@ -33,19 +33,19 @@
                 * betx/bety = 50/40 - 2.7 m, 2.6 m
                 * betx/bety = 50/30 - 2.5 m, 2.4 m, 2.3 m, 2.2 m
         Also there calculated optimal values for quads strength which you will also get by executing scripts. These values are the following:
-        	* 2.8m
+          * 2.8m
         		- QP1D - 1.74827e+01
         		- QP2D - 1.86366e+01
         		- QP3D - -1.33307e+01
-        	* 2.9m
+          * 2.9m
         		- QP1D - 1.68866e+01
         		- QP2D - 1.80241e+01
         		- QP3D - -1.17880e+01
-        	* 2.7m
+          * 2.7m
         		- QP1D - 1.81689e+01
         		- QP2D - 1.93364e+01
         		- QP3D - -1.55868e+01
-        	* 2.6m
+          * 2.6m
         		- QP1D - 1.89444e+01
         		- QP2D - 2.01548e+01
         		- QP3D - -1.57964e+01
