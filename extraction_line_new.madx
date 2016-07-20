@@ -117,7 +117,7 @@ SDIE3_3->l = (len - ld) / 2;
 
 value, SDIE3_1->l, SDIE3_2_1->l, SDIE3_2_1->l, SDIE3_3->l;
 
-readmytable, file = "twiss_files/ring_twiss.out", table = twiss_ring;
+readmytable, file = "ring_twiss.out", table = twiss_ring;
 betx0 = table(twiss_ring, SEPT_mid, betx);
 bety0 = table(twiss_ring, SEPT_mid, bety);
 alfx0 = table(twiss_ring, SEPT_mid, alfx);
@@ -233,11 +233,11 @@ endmatch;
 //		QP8EX = -3.11167e+00
 
 select, flag = twiss, column = name, s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
-twiss, save, file = "twiss_files/extraction_twiss.out", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
+twiss, save, file = "extraction_twiss.out", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
 
 readmytable, file = "survey_files/ring_survey.out", table = survey_ring;
 select, flag = survey, column = name, s, x, z, theta;
-survey, sequence = INJ_LINE, file = "survey_files/extraction_survey.out";
+survey, sequence = INJ_LINE, file = "extraction_survey.out";
 
 //select, flag = twiss, column = s, betx, bety;
 //write, table = twiss, file = "extraction_twiss.out";
@@ -245,7 +245,7 @@ value, SDIE3_1->l, SDIE3_2_1->l, SDIE3_2_2->l, SDIE3_3->l;
 value, ld;
 value, len;
 setplot, font = 2;
-plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_plots/extraction_twiss";
+plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "extraction_twiss";
 
 //plot, haxis = s, vaxis = dx, dpx, colour = 100, file = "twiss_plots/extraction_twiss";
 
