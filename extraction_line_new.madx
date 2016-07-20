@@ -235,7 +235,7 @@ endmatch;
 select, flag = twiss, column = name, s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
 twiss, save, file = "extraction_twiss.out", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
 
-readmytable, file = "survey_files/ring_survey.out", table = survey_ring;
+readmytable, file = "ring_survey.out", table = survey_ring;
 select, flag = survey, column = name, s, x, z, theta;
 survey, sequence = INJ_LINE, file = "extraction_survey.out";
 
